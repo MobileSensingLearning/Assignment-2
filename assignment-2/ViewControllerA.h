@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
 
-@interface ViewControllerA : UIViewController
-
+//@interface ViewControllerA : UIViewController
+@interface ViewControllerA : GLKViewController
 
 @end
 

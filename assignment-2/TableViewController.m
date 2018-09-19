@@ -47,7 +47,7 @@
         cell.textLabel.text = @"Module A";
     }
     if(indexPath.section == 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell1" forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
         // Configure the cell...
         cell.textLabel.text = @"Module B";
     }

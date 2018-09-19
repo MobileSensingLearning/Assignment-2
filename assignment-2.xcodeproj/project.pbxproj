@@ -14,6 +14,10 @@
 		202DFAEA214873C7003E4652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202DFAE9214873C7003E4652 /* Assets.xcassets */; };
 		202DFAED214873C7003E4652 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202DFAEB214873C7003E4652 /* LaunchScreen.storyboard */; };
 		202DFAF0214873C7003E4652 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 202DFAEF214873C7003E4652 /* main.m */; };
+		204602722151B52200ECBB27 /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2046026C2151B52100ECBB27 /* FFTHelper.m */; };
+		204602732151B52200ECBB27 /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2046026E2151B52200ECBB27 /* Novocaine.m */; };
+		204602742151B52200ECBB27 /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 204602712151B52200ECBB27 /* CircularBuffer.m */; };
+		204602772151C7CD00ECBB27 /* SMUGraphHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 204602752151C7CC00ECBB27 /* SMUGraphHelper.m */; };
 		65EA479521487CDA00334F05 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EA479421487CDA00334F05 /* TableViewController.m */; };
 		65EA479821487D1A00334F05 /* ViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EA479721487D1A00334F05 /* ViewControllerB.m */; };
 /* End PBXBuildFile section */
@@ -30,6 +34,14 @@
 		202DFAEC214873C7003E4652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		202DFAEE214873C7003E4652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		202DFAEF214873C7003E4652 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2046026C2151B52100ECBB27 /* FFTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFTHelper.m; sourceTree = "<group>"; };
+		2046026D2151B52200ECBB27 /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Novocaine.h; sourceTree = "<group>"; };
+		2046026E2151B52200ECBB27 /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Novocaine.m; sourceTree = "<group>"; };
+		2046026F2151B52200ECBB27 /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularBuffer.h; sourceTree = "<group>"; };
+		204602702151B52200ECBB27 /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTHelper.h; sourceTree = "<group>"; };
+		204602712151B52200ECBB27 /* CircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularBuffer.m; sourceTree = "<group>"; };
+		204602752151C7CC00ECBB27 /* SMUGraphHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUGraphHelper.m; sourceTree = "<group>"; };
+		204602762151C7CC00ECBB27 /* SMUGraphHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUGraphHelper.h; sourceTree = "<group>"; };
 		65EA479321487CDA00334F05 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		65EA479421487CDA00334F05 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		65EA479621487D1A00334F05 /* ViewControllerB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerB.h; sourceTree = "<group>"; };
@@ -66,6 +78,14 @@
 		202DFADC214873C6003E4652 /* assignment-2 */ = {
 			isa = PBXGroup;
 			children = (
+				204602762151C7CC00ECBB27 /* SMUGraphHelper.h */,
+				204602752151C7CC00ECBB27 /* SMUGraphHelper.m */,
+				2046026F2151B52200ECBB27 /* CircularBuffer.h */,
+				204602712151B52200ECBB27 /* CircularBuffer.m */,
+				204602702151B52200ECBB27 /* FFTHelper.h */,
+				2046026C2151B52100ECBB27 /* FFTHelper.m */,
+				2046026D2151B52200ECBB27 /* Novocaine.h */,
+				2046026E2151B52200ECBB27 /* Novocaine.m */,
 				202DFADD214873C6003E4652 /* AppDelegate.h */,
 				202DFADE214873C6003E4652 /* AppDelegate.m */,
 				202DFAE0214873C6003E4652 /* ViewControllerA.h */,
@@ -154,8 +174,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				204602772151C7CD00ECBB27 /* SMUGraphHelper.m in Sources */,
+				204602742151B52200ECBB27 /* CircularBuffer.m in Sources */,
+				204602732151B52200ECBB27 /* Novocaine.m in Sources */,
 				202DFAE2214873C6003E4652 /* ViewControllerA.m in Sources */,
 				202DFADF214873C6003E4652 /* AppDelegate.m in Sources */,
+				204602722151B52200ECBB27 /* FFTHelper.m in Sources */,
 				202DFAF0214873C7003E4652 /* main.m in Sources */,
 				65EA479521487CDA00334F05 /* TableViewController.m in Sources */,
 				202DFAE8214873C6003E4652 /* assignment_2.xcdatamodeld in Sources */,
