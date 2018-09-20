@@ -54,26 +54,32 @@
     if(!_graphHelper){
         _graphHelper = [[SMUGraphHelper alloc]initWithController:self
                                         preferredFramesPerSecond:15
-                                                       numGraphs:0
+                                                       numGraphs:1
                                                        plotStyle:PlotStyleSeparated
                                                maxPointsPerGraph:BUFFER_SIZE];
     }
     return _graphHelper;
 }
 
--(void ) viewDidDisappear {
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     [self.audioManager pause];
+    NSLog(@"Called pause");
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     
+    [self.graphHelper setScreenBoundsBottomHalf];
+    
+    // play the tone
     self.phaseIncrement = 2*M_PI*self.frequency/self.audioManager.samplingRate;
     float phaseInc = 2*M_PI*440.0/self.audioManager.samplingRate;
     __block float phase = 0.0;
     [self.audioManager setOutputBlock:^(float* data, UInt32 numFrames, UInt32 numChannels){
-        
         for (int n=0; n<numFrames; n++) {
             data[n] = sin(phase);
             phase += self.phaseIncrement;
@@ -81,25 +87,48 @@
         
     }];
     
-    [self.audioManager play];
-    
+    // read from the mic
     __block ViewControllerA * __weak  weakSelf = self;
     [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels){
         [weakSelf.buffer addNewFloatData:data withNumSamples:numFrames];
     }];
     
+    [self.audioManager play];
+    
+    
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    //self.view.backgroundColor = [UIColor redColor];
+
 }
 
 - (void)update{
-    NSLog(@"CALLED UPDATEf");
+    //NSLog(@"CALLED UPDATEf");
     // get audio stream data
     float* arrayData = malloc(sizeof(float)*BUFFER_SIZE);
     float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE/2);
     
+    [self.buffer fetchFreshData:arrayData withNumSamples:BUFFER_SIZE];
+    
+    //send off for graphing
+//    [self.graphHelper setGraphData:arrayData
+//                    withDataLength:BUFFER_SIZE
+//                     forGraphIndex:0];
+    
     // take forward FFT
     [self.fftHelper performForwardFFTWithData:arrayData
                    andCopydBMagnitudeToBuffer:fftMagnitude];
-    self.dbLabel.text = [NSString stringWithFormat:@"%i dB",fftMagnitude];
+    
+    [self.graphHelper setGraphData:fftMagnitude
+                    withDataLength:BUFFER_SIZE/2
+                     forGraphIndex:0
+                 withNormalization:64.0
+                     withZeroValue:-60];
+    
     [self.graphHelper update];
     free(arrayData);
     free(fftMagnitude);
@@ -115,6 +144,11 @@
     self.frequency = freqInKHz*1000.0;
     self.freqLabel.text = [NSString stringWithFormat:@"%.4f kHz",freqInKHz];
     self.phaseIncrement = 2*M_PI*self.frequency/self.audioManager.samplingRate;
+}
+
+//  override the GLKView draw function, from OpenGLES
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+    [self.graphHelper draw]; // draw the graph
 }
 
 
