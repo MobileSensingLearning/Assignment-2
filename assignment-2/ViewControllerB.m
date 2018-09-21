@@ -14,7 +14,7 @@
 
 //#define BUFFER_SIZE 2048
 #define BUFFER_SIZE 4096
-//#define minMagnitude 3
+#define minMagnitude 1
 
 @interface ViewControllerB ()
 @property (strong, nonatomic) FFTHelper *fftHelper;
@@ -133,7 +133,7 @@
     double rightSum = 0;
     
     int DEADSPACE = 5;
-    int WINDOWSIZE = 15;
+    int WINDOWSIZE = 20;
     
     for(int i = targetIndex - WINDOWSIZE; i < targetIndex-DEADSPACE; i++){
         //NSLog(@"CURRENT INDEX: %i", i);
@@ -145,21 +145,19 @@
         //NSLog(@"INDEX RIGHT VALUE: %f", fftMagnitude[i]);
         rightSum += fftMagnitude[i]/fftMagnitude[targetIndex];
     }
-    NSLog(@"SUMS: (%.4f, %.4f)", leftSum, rightSum);
+    //NSLog(@"SUMS: (%.4f, %.4f)", leftSum, rightSum);
     
     float leftAvg = leftSum / WINDOWSIZE;
     float rightAvg = rightSum / WINDOWSIZE;
-    
-//    NSLog(@"LEFT AVG: %f", leftAvg);
-//    NSLog(@"RIGHT AVG: %f", rightAvg);
-    
-    if(leftAvg > rightAvg && leftAvg > rightAvg*1.3){
-        self.labelForDirection.text = @"Away";
-    }else if(leftAvg < rightAvg && leftAvg*0.888 < rightAvg){
-        self.labelForDirection.text = @"Toward";
-    }else{
-        self.labelForDirection.text = @"No Direction";
-    }
+    float leftRightRatio = leftAvg / rightAvg;
+
+        if(leftRightRatio*0.8 > 1){
+            self.labelForDirection.text = @"Away";
+        }else if(leftRightRatio*1.2 < 1){
+            self.labelForDirection.text = @"Toward";
+        }else{
+            self.labelForDirection.text = @"No Direction";
+        }
     
     // call update
     [self.graphHelper update];
@@ -188,3 +186,27 @@
 
 
 @end
+
+//NSLog(@"RATIO: (%.4f)", leftRightRatio);
+
+//NSLog(@"LEFT AVG: %f, %f", leftAvg/leftRightRatio, rightAvg/leftRightRatio);
+//        NSLog(@"RIGHT SUM: %f", rightSum);
+//        NSLog(@"Left SUM: %f", leftSum);
+//NSLog(@"RIGHT AVG: %f", rightAvg);
+
+//    if(leftAvg> rightAvg+.2){
+//        self.labelForDirection.text = @"Away";
+//    }else if(leftAvg+.2 < rightAvg){
+//        self.labelForDirection.text = @"Toward";
+//    }else{
+//        self.labelForDirection.text = @"No Direction";
+//    }
+
+//    if(leftAvg > rightAvg && leftAvg > rightAvg*1.3){
+//        self.labelForDirection.text = @"Away";
+//    }else if(leftAvg < rightAvg && leftAvg*0.8 < rightAvg){
+//        self.labelForDirection.text = @"Toward";
+//    }else{
+//        self.labelForDirection.text = @"No Direction";
+//    }
+

@@ -154,21 +154,24 @@
         float maxLabel_value = [self.maxLabel.text floatValue];
         float maxLabel2_value = [self.secondMaxLabel.text floatValue];
        
-        
-        if(max1frequency > maxLabel_value) {
-            self.maxLabel.text =  [NSString stringWithFormat:@"%f", max1frequency];
-            self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f", maxLabel_value];
+//        if(max1frequency > 50){
+            if(max1frequency > maxLabel_value) {
+                self.maxLabel.text =  [NSString stringWithFormat:@"%f", max1frequency];
+                self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f", maxLabel_value];
+                
+            }  else if(max1frequency > maxLabel2_value && max1frequency < maxLabel2_value) {
+                self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f", max1frequency];
+            }
+            
+            if(max2frequency > maxLabel2_value && max2frequency < maxLabel_value) {
+                self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f", max2frequency];
+            }
+            
+            
+            [maxMagnitude addObject: [NSNumber numberWithInt:max]];
+            
+//        }
 
-        }  else if(max1frequency > maxLabel2_value && max1frequency < maxLabel2_value) {
-            self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f", max1frequency];
-        }
-        
-        if(max2frequency > maxLabel2_value && max2frequency < maxLabel_value) {
-            self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f", max2frequency];
-        }
-
-        
-        [maxMagnitude addObject: [NSNumber numberWithInt:max]];
     }
     
     [self.graphHelper setGraphData:fftMagnitude
