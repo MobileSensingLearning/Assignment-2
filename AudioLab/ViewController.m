@@ -21,10 +21,6 @@
 @property (strong, nonatomic) FFTHelper *fftHelper;
 @property (weak, nonatomic) IBOutlet UILabel *maxLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondMaxLabel;
-@property (strong, nonatomic) NSNumber *maxFrequency;
-@property (weak, nonatomic) NSNumber *secondMaxFrequency;
-
-
 @end
 
 
@@ -70,10 +66,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.maxFrequency = [NSNumber numberWithFloat: -1000];
-    self.secondMaxFrequency = [NSNumber numberWithFloat: -1000];
-    self.maxLabel.text = [NSString stringWithFormat:@"%@ Hz", self.maxFrequency];
-    self.secondMaxLabel.text = [NSString stringWithFormat:@"%@ Hz", self.secondMaxFrequency];
+    self.maxLabel.text = [NSString stringWithFormat:@"%d HZ", -1000];
+    self.secondMaxLabel.text = [NSString stringWithFormat:@"%d Hz", -1000];
 
     [self.graphHelper setFullScreenBounds];
     
@@ -81,7 +75,7 @@
     [self.audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels){
         [weakSelf.buffer addNewFloatData:data withNumSamples:numFrames];
     }];
-    NSLog(@"Largest %f, ", [self.maxLabel.text floatValue]);
+    
     [self.audioManager play];
 }
 
@@ -129,43 +123,51 @@
         }
         
         
-        if([self.maxFrequency floatValue] > 4000 && [self.maxLabel.text floatValue] > 4000) {
-            NSLog(@"Label > than 4000 but value is not!");
-        }
+           
            // go back thru peakMag and see which 2 were largest
-        for (NSInteger i = 0; i < [peakFrequency count]; ++i) {
-            float frequency = [peakFrequency[i] floatValue];
-            if (frequency > [self.maxFrequency floatValue]) {
-                self.secondMaxFrequency = self.maxFrequency;
-                self.maxFrequency = [NSNumber numberWithFloat: frequency];
-            } else if (frequency > [self.secondMaxFrequency floatValue] && frequency < [self.maxFrequency floatValue]) {
-                self.secondMaxFrequency = [NSNumber numberWithFloat: frequency];
+        float max1magnitude = -1000, max2magnitude = -1000;
+        for (NSInteger i = 0; i < [peakMagnitude count]; ++i) {
+            float magnitude = [peakMagnitude[i] floatValue];
+            if (magnitude > max1magnitude) {
+                max2magnitude = max1magnitude;
+                max1magnitude = magnitude;
+            } else if (magnitude > max2magnitude && magnitude < max1magnitude) {
+                max2magnitude = magnitude;
             }
         }
         
-//        NSLog(@"Largest %f, ", max1);
-//        NSLog(@"Second largest %f, ", max2);
-
-        
-        
+        float max1frequency = -1000, max2frequency = -1000;
            // grab 2 index
+        for (NSInteger i = 0; i < [peakMagnitude count]; ++i) {
+            if([peakMagnitude[i] floatValue] == max1magnitude) {
+                max1frequency = [peakFrequency[i] floatValue];
+            }
+            
+            if([peakMagnitude[i] floatValue] == max2magnitude) {
+                max2frequency = [peakFrequency[i] floatValue];
+            }
+        }
+        
+        NSLog(@"Max1frequency: %f", max1frequency);
+        NSLog(@"Max2frequency: %f", max2frequency);
+
         float maxLabel_value = [self.maxLabel.text floatValue];
         float maxLabel2_value = [self.secondMaxLabel.text floatValue];
-//        NSLog(@"Label 1 %f, ", maxLabel_value);
-//        NSLog(@"Label 2 %f, ", maxLabel2_value);
-//        self.maxLabel.text =  [NSString stringWithFormat:@"%f", max1];
-//        self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f", max2];
+       
         
-        if([self.maxFrequency floatValue] > [self.maxLabel.text floatValue]) {
-            self.maxLabel.text =  [NSString stringWithFormat:@"%@ Hz", self.maxFrequency];
-        }  else if([self.maxFrequency floatValue] > maxLabel2_value && [self.maxFrequency floatValue] < maxLabel_value) {
-            self.secondMaxLabel.text =  [NSString stringWithFormat:@"%@ Hz", self.maxFrequency];
+        if(max1frequency > maxLabel_value) {
+            self.maxLabel.text =  [NSString stringWithFormat:@"%f", max1frequency];
+            self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f", maxLabel_value];
+
+        }  else if(max1frequency > maxLabel2_value && max1frequency < maxLabel2_value) {
+            self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f", max1frequency];
         }
         
-        if([self.secondMaxFrequency floatValue] > maxLabel2_value) {
-            self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f Hz", self.secondMaxFrequency];
+        if(max2frequency > maxLabel2_value && max2frequency < maxLabel_value) {
+            self.secondMaxLabel.text =  [NSString stringWithFormat:@"%f", max2frequency];
         }
 
+        
         [maxMagnitude addObject: [NSNumber numberWithInt:max]];
     }
     
