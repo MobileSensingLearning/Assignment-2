@@ -12,7 +12,7 @@
 #import "SMUGraphHelper.h"
 #import "FFTHelper.h"
 
-#define BUFFER_SIZE 4096 // 4096
+#define BUFFER_SIZE  2048*4// 4096
 
 @interface ViewControllerB ()
 @property (strong, nonatomic) Novocaine *audioManager;
@@ -85,7 +85,7 @@
     // just plot the audio stream
     
     // get audio stream data
-    const int SIZE = BUFFER_SIZE;
+    const int SIZE = BUFFER_SIZE/2;
     float* arrayData = malloc(sizeof(float)*BUFFER_SIZE);
     float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE/2);
     
