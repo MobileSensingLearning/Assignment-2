@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		202DFADF214873C6003E4652 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 202DFADE214873C6003E4652 /* AppDelegate.m */; };
-		202DFAE2214873C6003E4652 /* ViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = 202DFAE1214873C6003E4652 /* ViewControllerA.m */; };
 		202DFAE5214873C6003E4652 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202DFAE3214873C6003E4652 /* Main.storyboard */; };
 		202DFAE8214873C6003E4652 /* assignment_2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 202DFAE6214873C6003E4652 /* assignment_2.xcdatamodeld */; };
 		202DFAEA214873C7003E4652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202DFAE9214873C7003E4652 /* Assets.xcassets */; };
@@ -18,16 +17,15 @@
 		658BC7E521556B620047D5E3 /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658BC7E021556B610047D5E3 /* CircularBuffer.m */; };
 		658BC7E621556B620047D5E3 /* SMUGraphHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 658BC7E221556B620047D5E3 /* SMUGraphHelper.m */; };
 		658BC7E721556B620047D5E3 /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 658BC7E321556B620047D5E3 /* FFTHelper.m */; };
-		658BC7EA21556D460047D5E3 /* ViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 658BC7E821556D460047D5E3 /* ViewControllerB.m */; };
+		658BC7EA21556D460047D5E3 /* ViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = 658BC7E821556D460047D5E3 /* ViewControllerA.m */; };
 		65EA479521487CDA00334F05 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EA479421487CDA00334F05 /* TableViewController.m */; };
+		65FDA35821558F31002104E5 /* ViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FDA35621558F31002104E5 /* ViewControllerB.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		202DFADA214873C6003E4652 /* assignment-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "assignment-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		202DFADD214873C6003E4652 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		202DFADE214873C6003E4652 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		202DFAE0214873C6003E4652 /* ViewControllerA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerA.h; sourceTree = "<group>"; };
-		202DFAE1214873C6003E4652 /* ViewControllerA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewControllerA.m; sourceTree = "<group>"; };
 		202DFAE4214873C6003E4652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		202DFAE7214873C6003E4652 /* assignment_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = assignment_2.xcdatamodel; sourceTree = "<group>"; };
 		202DFAE9214873C7003E4652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,10 +40,12 @@
 		658BC7E121556B610047D5E3 /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTHelper.h; sourceTree = "<group>"; };
 		658BC7E221556B620047D5E3 /* SMUGraphHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUGraphHelper.m; sourceTree = "<group>"; };
 		658BC7E321556B620047D5E3 /* FFTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFTHelper.m; sourceTree = "<group>"; };
-		658BC7E821556D460047D5E3 /* ViewControllerB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerB.m; sourceTree = "<group>"; };
-		658BC7E921556D460047D5E3 /* ViewControllerB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerB.h; sourceTree = "<group>"; };
+		658BC7E821556D460047D5E3 /* ViewControllerA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerA.m; sourceTree = "<group>"; };
+		658BC7E921556D460047D5E3 /* ViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerA.h; sourceTree = "<group>"; };
 		65EA479321487CDA00334F05 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		65EA479421487CDA00334F05 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		65FDA35621558F31002104E5 /* ViewControllerB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerB.m; sourceTree = "<group>"; };
+		65FDA35721558F31002104E5 /* ViewControllerB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerB.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,11 +88,11 @@
 				658BC7DE21556B610047D5E3 /* Novocaine.m */,
 				202DFADD214873C6003E4652 /* AppDelegate.h */,
 				202DFADE214873C6003E4652 /* AppDelegate.m */,
-				202DFAE0214873C6003E4652 /* ViewControllerA.h */,
-				202DFAE1214873C6003E4652 /* ViewControllerA.m */,
 				202DFAE3214873C6003E4652 /* Main.storyboard */,
-				658BC7E921556D460047D5E3 /* ViewControllerB.h */,
-				658BC7E821556D460047D5E3 /* ViewControllerB.m */,
+				658BC7E921556D460047D5E3 /* ViewControllerA.h */,
+				658BC7E821556D460047D5E3 /* ViewControllerA.m */,
+				65FDA35721558F31002104E5 /* ViewControllerB.h */,
+				65FDA35621558F31002104E5 /* ViewControllerB.m */,
 				65EA479321487CDA00334F05 /* TableViewController.h */,
 				65EA479421487CDA00334F05 /* TableViewController.m */,
 				202DFAE9214873C7003E4652 /* Assets.xcassets */,
@@ -175,15 +175,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				658BC7E621556B620047D5E3 /* SMUGraphHelper.m in Sources */,
-				202DFAE2214873C6003E4652 /* ViewControllerA.m in Sources */,
 				202DFADF214873C6003E4652 /* AppDelegate.m in Sources */,
 				658BC7E521556B620047D5E3 /* CircularBuffer.m in Sources */,
 				202DFAF0214873C7003E4652 /* main.m in Sources */,
-				658BC7EA21556D460047D5E3 /* ViewControllerB.m in Sources */,
+				658BC7EA21556D460047D5E3 /* ViewControllerA.m in Sources */,
 				658BC7E421556B620047D5E3 /* Novocaine.m in Sources */,
 				65EA479521487CDA00334F05 /* TableViewController.m in Sources */,
 				202DFAE8214873C6003E4652 /* assignment_2.xcdatamodeld in Sources */,
 				658BC7E721556B620047D5E3 /* FFTHelper.m in Sources */,
+				65FDA35821558F31002104E5 /* ViewControllerB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
