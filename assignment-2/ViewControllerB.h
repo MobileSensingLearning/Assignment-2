@@ -1,13 +1,16 @@
 //
-//  ViewControllerB.h
-//  assignment-2
+//  ViewController.h
+//  AudioLab
 //
-//  Created by Enyinnaya Asonye on 9/11/18.
-//  Copyright © 2018 MobileSensingLearning. All rights reserved.
+//  Created by Eric Larson on 8/24/16.
+//  Copyright © 2016 Eric Larson. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
 
-@interface ViewControllerB : UIViewController
+@interface ViewControllerB : GLKViewController
+
 
 @end
+

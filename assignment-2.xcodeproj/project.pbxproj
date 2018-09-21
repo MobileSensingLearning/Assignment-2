@@ -14,8 +14,12 @@
 		202DFAEA214873C7003E4652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202DFAE9214873C7003E4652 /* Assets.xcassets */; };
 		202DFAED214873C7003E4652 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202DFAEB214873C7003E4652 /* LaunchScreen.storyboard */; };
 		202DFAF0214873C7003E4652 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 202DFAEF214873C7003E4652 /* main.m */; };
+		658BC7E421556B620047D5E3 /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = 658BC7DE21556B610047D5E3 /* Novocaine.m */; };
+		658BC7E521556B620047D5E3 /* CircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658BC7E021556B610047D5E3 /* CircularBuffer.m */; };
+		658BC7E621556B620047D5E3 /* SMUGraphHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 658BC7E221556B620047D5E3 /* SMUGraphHelper.m */; };
+		658BC7E721556B620047D5E3 /* FFTHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 658BC7E321556B620047D5E3 /* FFTHelper.m */; };
+		658BC7EA21556D460047D5E3 /* ViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 658BC7E821556D460047D5E3 /* ViewControllerB.m */; };
 		65EA479521487CDA00334F05 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EA479421487CDA00334F05 /* TableViewController.m */; };
-		65EA479821487D1A00334F05 /* ViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EA479721487D1A00334F05 /* ViewControllerB.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,10 +34,18 @@
 		202DFAEC214873C7003E4652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		202DFAEE214873C7003E4652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		202DFAEF214873C7003E4652 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		658BC7DC21556B610047D5E3 /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularBuffer.h; sourceTree = "<group>"; };
+		658BC7DD21556B610047D5E3 /* SMUGraphHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUGraphHelper.h; sourceTree = "<group>"; };
+		658BC7DE21556B610047D5E3 /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Novocaine.m; sourceTree = "<group>"; };
+		658BC7DF21556B610047D5E3 /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Novocaine.h; sourceTree = "<group>"; };
+		658BC7E021556B610047D5E3 /* CircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularBuffer.m; sourceTree = "<group>"; };
+		658BC7E121556B610047D5E3 /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTHelper.h; sourceTree = "<group>"; };
+		658BC7E221556B620047D5E3 /* SMUGraphHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUGraphHelper.m; sourceTree = "<group>"; };
+		658BC7E321556B620047D5E3 /* FFTHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFTHelper.m; sourceTree = "<group>"; };
+		658BC7E821556D460047D5E3 /* ViewControllerB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerB.m; sourceTree = "<group>"; };
+		658BC7E921556D460047D5E3 /* ViewControllerB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerB.h; sourceTree = "<group>"; };
 		65EA479321487CDA00334F05 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		65EA479421487CDA00334F05 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		65EA479621487D1A00334F05 /* ViewControllerB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewControllerB.h; sourceTree = "<group>"; };
-		65EA479721487D1A00334F05 /* ViewControllerB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewControllerB.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +78,21 @@
 		202DFADC214873C6003E4652 /* assignment-2 */ = {
 			isa = PBXGroup;
 			children = (
+				658BC7DD21556B610047D5E3 /* SMUGraphHelper.h */,
+				658BC7E221556B620047D5E3 /* SMUGraphHelper.m */,
+				658BC7DC21556B610047D5E3 /* CircularBuffer.h */,
+				658BC7E021556B610047D5E3 /* CircularBuffer.m */,
+				658BC7E121556B610047D5E3 /* FFTHelper.h */,
+				658BC7E321556B620047D5E3 /* FFTHelper.m */,
+				658BC7DF21556B610047D5E3 /* Novocaine.h */,
+				658BC7DE21556B610047D5E3 /* Novocaine.m */,
 				202DFADD214873C6003E4652 /* AppDelegate.h */,
 				202DFADE214873C6003E4652 /* AppDelegate.m */,
 				202DFAE0214873C6003E4652 /* ViewControllerA.h */,
 				202DFAE1214873C6003E4652 /* ViewControllerA.m */,
 				202DFAE3214873C6003E4652 /* Main.storyboard */,
-				65EA479621487D1A00334F05 /* ViewControllerB.h */,
-				65EA479721487D1A00334F05 /* ViewControllerB.m */,
+				658BC7E921556D460047D5E3 /* ViewControllerB.h */,
+				658BC7E821556D460047D5E3 /* ViewControllerB.m */,
 				65EA479321487CDA00334F05 /* TableViewController.h */,
 				65EA479421487CDA00334F05 /* TableViewController.m */,
 				202DFAE9214873C7003E4652 /* Assets.xcassets */,
@@ -154,12 +174,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				658BC7E621556B620047D5E3 /* SMUGraphHelper.m in Sources */,
 				202DFAE2214873C6003E4652 /* ViewControllerA.m in Sources */,
 				202DFADF214873C6003E4652 /* AppDelegate.m in Sources */,
+				658BC7E521556B620047D5E3 /* CircularBuffer.m in Sources */,
 				202DFAF0214873C7003E4652 /* main.m in Sources */,
+				658BC7EA21556D460047D5E3 /* ViewControllerB.m in Sources */,
+				658BC7E421556B620047D5E3 /* Novocaine.m in Sources */,
 				65EA479521487CDA00334F05 /* TableViewController.m in Sources */,
 				202DFAE8214873C6003E4652 /* assignment_2.xcdatamodeld in Sources */,
-				65EA479821487D1A00334F05 /* ViewControllerB.m in Sources */,
+				658BC7E721556B620047D5E3 /* FFTHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
