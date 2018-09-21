@@ -12,17 +12,22 @@
 #import "FFTHelper.h"
 #import "SMUGraphHelper.h"
 
-#define BUFFER_SIZE 2048
+//#define BUFFER_SIZE 2048
+#define BUFFER_SIZE 4096
+//#define minMagnitude 3
 
 @interface ViewControllerA ()
+@property (strong, nonatomic) FFTHelper *fftHelper;
+@property (strong, nonatomic) CircularBuffer *buffer;
+@property (strong, nonatomic) Novocaine* audioManager;
+@property (strong, nonatomic) SMUGraphHelper *graphHelper;
+
 @property (nonatomic) float frequency;
 @property (weak, nonatomic) IBOutlet UILabel *freqLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dbLabel;
-@property (strong, nonatomic) Novocaine* audioManager;
 @property (nonatomic) float phaseIncrement;
-@property (strong, nonatomic) CircularBuffer *buffer;
-@property (strong, nonatomic) FFTHelper *fftHelper;
-@property (strong, nonatomic) SMUGraphHelper *graphHelper;
+@property (weak, nonatomic) IBOutlet UISlider *frequencySlider;
+@property (weak, nonatomic) IBOutlet UILabel *labelForDirection;
+
 
 @end
 
@@ -77,7 +82,8 @@
     
     // play the tone
     self.phaseIncrement = 2*M_PI*self.frequency/self.audioManager.samplingRate;
-    float phaseInc = 2*M_PI*440.0/self.audioManager.samplingRate;
+    //float phaseInc = 2*M_PI*18000.0/self.audioManager.samplingRate;
+    float phaseInc = 2*M_PI*self.frequency/self.audioManager.samplingRate;
     __block float phase = 0.0;
     [self.audioManager setOutputBlock:^(float* data, UInt32 numFrames, UInt32 numChannels){
         for (int n=0; n<numFrames; n++) {
@@ -101,35 +107,64 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    //self.view.backgroundColor = [UIColor redColor];
-
 }
 
 - (void)update{
-    //NSLog(@"CALLED UPDATEf");
     // get audio stream data
     float* arrayData = malloc(sizeof(float)*BUFFER_SIZE);
     float* fftMagnitude = malloc(sizeof(float)*BUFFER_SIZE/2);
     
     [self.buffer fetchFreshData:arrayData withNumSamples:BUFFER_SIZE];
     
-    //send off for graphing
-//    [self.graphHelper setGraphData:arrayData
-//                    withDataLength:BUFFER_SIZE
-//                     forGraphIndex:0];
-    
-    // take forward FFT
+    // take forward fft
     [self.fftHelper performForwardFFTWithData:arrayData
                    andCopydBMagnitudeToBuffer:fftMagnitude];
     
+    // send off for graphing
     [self.graphHelper setGraphData:fftMagnitude
                     withDataLength:BUFFER_SIZE/2
                      forGraphIndex:0
                  withNormalization:64.0
                      withZeroValue:-60];
     
+    int targetIndex = (self.frequency*((float)BUFFER_SIZE)/((float)self.audioManager.samplingRate));
+    //NSLog(@"TARGET INDEX: %i", targetIndex);
+    double leftSum = 0;
+    double rightSum = 0;
+    
+    int DEADSPACE = 5;
+    int WINDOWSIZE = 15;
+    
+    for(int i = targetIndex - WINDOWSIZE; i < targetIndex-DEADSPACE; i++){
+        //NSLog(@"CURRENT INDEX: %i", i);
+        //NSLog(@"INDEX LEFT VALUE: %f", fftMagnitude[i]);
+        leftSum += fftMagnitude[i]/fftMagnitude[targetIndex];
+    }
+    for(int i = targetIndex + WINDOWSIZE; i > targetIndex+DEADSPACE; i--){
+        //NSLog(@"CURRENT INDEX: %i", i);
+        //NSLog(@"INDEX RIGHT VALUE: %f", fftMagnitude[i]);
+        rightSum += fftMagnitude[i]/fftMagnitude[targetIndex];
+    }
+    NSLog(@"SUMS: (%.4f, %.4f)", leftSum, rightSum);
+    
+    float leftAvg = leftSum / WINDOWSIZE;
+    float rightAvg = rightSum / WINDOWSIZE;
+    
+//    NSLog(@"LEFT AVG: %f", leftAvg);
+//    NSLog(@"RIGHT AVG: %f", rightAvg);
+    
+    if(leftAvg > rightAvg && leftAvg > rightAvg*1.3){
+        self.labelForDirection.text = @"Away";
+    }else if(leftAvg < rightAvg && leftAvg*0.888 < rightAvg){
+        self.labelForDirection.text = @"Toward";
+    }else{
+        self.labelForDirection.text = @"No Direction";
+    }
+    
+    // call update
     [self.graphHelper update];
+    
+    // free memory
     free(arrayData);
     free(fftMagnitude);
     
@@ -137,7 +172,6 @@
 
 - (IBAction)frequencyChanged:(UISlider *)sender {
     [self updateFrequencyInKhz:sender.value];
-    
 }
 
 -(void)updateFrequencyInKhz:(float) freqInKHz {
